@@ -1,0 +1,4 @@
+Some thing to do:
+add another acceleration to travel speed
+file with list of gcode files to process
+file with print/printer settings (acceleration, etc ...) 
