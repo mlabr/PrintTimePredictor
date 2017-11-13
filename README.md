@@ -21,3 +21,5 @@ result: Program try to read the file "Vystuha_rohu_v1.gcode" and calculate the t
 Example 2:
 cmd: java -jar PrintTimePredictor.jar -Vystuha_rohu_v1.gcode -Pojezd_Z_LP_rameno_v1.1.gcode
 result: Program try to read the file "Vystuha_rohu_v1.gcode" and "Pojezd_Z_LP_rameno_v1.1.gcode", then calculate the time that it is need to print. The result number is written into console.
+
+Keep in mind that this program is still under development, so the calculated time is not 100% accurate and need some testing.
