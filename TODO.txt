@@ -1,4 +1,5 @@
 Some thing to do:
-add another acceleration to travel speed
+add another acceleration to travel speed (yx - plane, z)
 file with list of gcode files to process
 file with print/printer settings (acceleration, etc ...) 
+output to file
