@@ -90,10 +90,8 @@ public class PrintTimePredictor
         dtoList = fileHandler.GetGCodeDataListByNameList(gcodeList);
         
         Calculator calculator = new Calculator();
-        calculator.AccelerationStart = 3500;
-        calculator.AccelerationStop = 3500;
         
-
+        
         float TotalEstimatedPrintTime = 0;
         for(FileDataDto dto : dtoList)
         {           

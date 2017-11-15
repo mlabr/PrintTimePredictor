@@ -28,12 +28,16 @@ import printTimePredictor.parser.Vector;
  */
 public class Calculator
 {
-    public double AccelerationStart = 3500; // mm/s^2
-    public double AccelerationStop = 3500; // mm/s^2
+    //TODO rafactore this:
+    public Acceleration accelerationXY = new Acceleration(3000,3000);
+    public Acceleration accelerationXYprinting = new Acceleration(4000,4000);
+    public Acceleration accelerationZ = new Acceleration(4000,4000);
+    public Acceleration accelerationRetraction = new Acceleration(3500,3500);
+    public Acceleration accelerationDefault = new Acceleration(3500,3500);
+
+    
+    public Acceleration acceleration;
     private double travelSpeed = 0; // mm/s
-    
-    
-    
     private double pathTotal = 0; // mm
     private double pathStart = 0; // mm
     private double pathStop = 0; // mm
@@ -45,17 +49,18 @@ public class Calculator
     private double timeLinear = 0; // s
     
     
-    
-    
-    public double calculateTraveTime(double path, double speed)
+    public double calculateTraveTime(double path, double speed, Acceleration acceleration)
     {   
+        double accelerationStart = acceleration.GetStartValue(); // mm/s^2
+        double accelerationStop = acceleration.GetStopValue();
+        
         pathTotal = path;
         travelSpeed = speed;
-        timeStart = travelSpeed / AccelerationStart;
-        timeStop = travelSpeed / AccelerationStop;
+        timeStart = travelSpeed / accelerationStart;
+        timeStop = travelSpeed / accelerationStop;
 
-        pathStart = 0.5 * AccelerationStart * (pow(timeStart,2));
-        pathStop =  0.5 * AccelerationStop * (pow(timeStop,2));
+        pathStart = 0.5 * accelerationStart * (pow(timeStart,2));
+        pathStop =  0.5 * accelerationStop * (pow(timeStop,2));
 
         if((pathStart + pathStop) < pathTotal) 
         {
@@ -69,12 +74,12 @@ public class Calculator
         else 
         {
             //acceleration is not enought to accelerate to full speed
-            double ratio = AccelerationStart /  AccelerationStop;
+            double ratio = accelerationStart /  accelerationStop;
             pathStart = pathTotal / (1 + ratio);
             pathStop = ratio * pathStart;
             
-            timeStart = sqrt(((2 * pathStart) / AccelerationStart));
-            timeStop = sqrt(((2 * pathStop) / AccelerationStop));
+            timeStart = sqrt(((2 * pathStart) / accelerationStart));
+            timeStop = sqrt(((2 * pathStop) / accelerationStop));
             timeTotal = timeStart + timeStop;
 
             return timeTotal;
@@ -84,7 +89,6 @@ public class Calculator
             
     public float ProcessVectorList(ArrayList<Vector> vectorList)
     {
-        
         double timeSum = 0;
         double time = 0;
         double path;
@@ -96,7 +100,25 @@ public class Calculator
             { 
                 path = vector.GetSize();
                 speed = vector.GetSpeed();
-                time = calculateTraveTime(path, speed);   
+                switch(vector.GetType())
+                {
+                    case 1: 
+                        acceleration = accelerationXY;
+                        break;
+                    case 2:
+                        acceleration = accelerationRetraction;
+                        break;
+                    case 3:
+                        acceleration = accelerationXYprinting;
+                        break;
+                    case 4:
+                        acceleration = accelerationZ;
+                        break;
+                    default : //Todo warning to log this.
+                        acceleration = accelerationDefault;
+   
+                }
+                time = calculateTraveTime(path, speed, acceleration);   
             } else
             {
                 time = 0;

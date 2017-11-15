@@ -31,15 +31,39 @@ public class Vector
     private float deltaY;
     private float deltaZ;
     private float extrude;
+    private int type = 0;
     public float TravelSpeed; //mm per seconds
-    public String Type;
+    //public String Type;
     
     public Vector(float dx, float dy, float dz, float extrude)
     {
         deltaX = dx;
         deltaY = dy;
         deltaZ = dz;
-        this.extrude = extrude; 
+        this.extrude = extrude;
+        
+        boolean isHorizontal = (dx != 0) || (dy!= 0);
+        boolean isExtrude = (extrude != 0);
+        boolean isVertical = (dz != 0);
+        
+        if(isHorizontal)
+        {
+            type += 1;
+        }
+        if(isExtrude)
+        {
+            type +=2;
+        }
+        if(isVertical)
+        {
+            type +=4;
+        }
+        //1 - moving
+        //2 - retraction
+        //3 - printing
+        //4 - vertical
+        //any other result cause that vector is unknown type.
+        
     }
     
     public double GetSize()
@@ -59,6 +83,11 @@ public class Vector
         return TravelSpeed;
     }
     
+    public int GetType()
+    {
+        return type;
+    }
+    
     
     public String ToString()
     {
@@ -66,7 +95,8 @@ public class Vector
         return "X: " + deltaX
                +" Y: " +deltaY
                 +" Z: " +deltaZ
-                +" E: " +extrude;
+                +" E: " +extrude
+                +" Type: " +type;
     }
     
     

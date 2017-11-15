@@ -58,9 +58,7 @@ public class Analyzer
         newGCodeData = getDataFromLine(line);
         float dx = 0,dy = 0,dz = 0, de = 0;
         
-        
-        
-        
+
         if(newGCodeData.isX)
         {
             dx = newGCodeData.X - currentGCodeData.X;
@@ -84,17 +82,7 @@ public class Analyzer
         }
 
         Vector vector = new Vector(dx,dy,dz, de);
-        vector.Type = newGCodeData.type;
-        /*
-        if(newGCodeData.isF)
-        {
-            vector.TravelSpeed = (newGCodeData.F / 60f); //velocity per second
-        }
-        else
-        {
-            vector.TravelSpeed = (currentTravelSpeed / 60f);
-        }
-        */
+        
         if(newGCodeData.isF)
         {
             currentTravelSpeed = newGCodeData.F;
@@ -134,11 +122,11 @@ public class Analyzer
                 //type
                 if(s.equalsIgnoreCase("G0"))
                 {
-                    gcodeData.type = "G0";
+                    gcodeData.functionName = "G0";
                 }
                 if(s.equalsIgnoreCase("G1"))
                 {
-                    gcodeData.type = "G1";
+                    gcodeData.functionName = "G1";
                 }
 
 

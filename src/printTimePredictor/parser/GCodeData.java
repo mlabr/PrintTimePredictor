@@ -41,7 +41,7 @@ public class GCodeData
     float E = 0;
     float F = 0;
     
-    String type= "G1";
+    String functionName= "G1";
     
     boolean isX = false;
     boolean isY = false;
@@ -105,7 +105,7 @@ public class GCodeData
     
     public String ToString()
     {
-        String str = type  
+        String str = functionName  
                 +" X: " + X
                 +" Y: " + Y
                 +" Z: " + Z
