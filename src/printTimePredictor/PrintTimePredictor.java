@@ -24,6 +24,7 @@ import printTimePredictor.service.ProgramLog;
 import java.util.ArrayList;
 import printTimePredictor.dataAccess.*;
 import printTimePredictor.dataAccess.FileDataDto;
+import printTimePredictor.helpers.TimeConvertor;
 import printTimePredictor.params.ParamHandler;
 import printTimePredictor.parser.Vector;
 
@@ -122,15 +123,18 @@ public class PrintTimePredictor
             float estimatedPrintTime = calculator.ProcessVectorList(vectorList);
             TotalEstimatedPrintTime += estimatedPrintTime;
             if(isVerbose)
-            {
-                System.out.println(dto.GetName() + ": " + estimatedPrintTime  +" seconds");
+            {  
+                String hoursMinutesSeconds = TimeConvertor.ConvertSecondsToHMS((long) estimatedPrintTime);
+                
+                System.out.println(dto.GetName() + ": " + estimatedPrintTime  +" seconds; " + hoursMinutesSeconds);
             }
 
         }     
         
         if(isVerbose)
         {
-            System.out.println("\nTotal estimated print time: " + TotalEstimatedPrintTime +" seconds");   
+            String hoursMinutesSeconds = TimeConvertor.ConvertSecondsToHMS((long) TotalEstimatedPrintTime);
+            System.out.println("\nTotal estimated print time: " + TotalEstimatedPrintTime +" seconds; " + hoursMinutesSeconds);   
         }
         else
         {
