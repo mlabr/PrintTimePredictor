@@ -41,6 +41,8 @@ public class PrintTimePredictor
     {
 
         ParamHandler paramHandler = new ParamHandler(args);
+        FileHandler fileHandler = new FileHandler();
+        
         boolean isVerbose = paramHandler.IsVerbose();
         ProgramLog log = new ProgramLog();
         
@@ -57,7 +59,20 @@ public class PrintTimePredictor
             System.out.println(version);
         }
         
-        ArrayList<String> gcodeList = paramHandler.GetGCodeList();
+        
+        ArrayList<String> gcodeList = new ArrayList<>();
+        
+        if(paramHandler.isProcessCurrentDirectory())
+        {
+            gcodeList = fileHandler.GetFilenameListByDirectory(fileHandler.GetCurrentDirecory());  
+        }
+        else
+        {
+            gcodeList = paramHandler.GetGCodeList();
+        }
+
+        
+        
         
         if (isVerbose)
         {
@@ -85,7 +100,7 @@ public class PrintTimePredictor
         }
         
         
-        FileHandler fileHandler = new FileHandler();
+        
         ArrayList<FileDataDto> dtoList = new ArrayList<>();
         dtoList = fileHandler.GetGCodeDataListByNameList(gcodeList);
         

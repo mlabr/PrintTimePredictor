@@ -32,6 +32,7 @@ public class ParamHandler
     private boolean isVersionInParams = false;
     private boolean isVerboseMode = false;
     private boolean isGcodeInParams = false;
+    private boolean isProcessCurrentDirectory = false;
     
     
     private final Schemes schemes = new Schemes();
@@ -65,6 +66,12 @@ public class ParamHandler
                         
                         isGcodeInParams = true;
                     }
+                    
+                    if(isProcessCurrentdirectory(arg))
+                    {
+                        isProcessCurrentDirectory = true;
+                    }
+                    
                 } else
                 {
                     unrecognisedParameterList.add(arg); 
@@ -112,6 +119,11 @@ public class ParamHandler
         return isVerboseMode;
     }
     
+    public boolean isProcessCurrentDirectory()
+    {
+        return isProcessCurrentDirectory;
+    }
+    
     private boolean isParameter(String str)
     {
         return schemes.Parameter.IsEqualToRule(str);
@@ -133,10 +145,16 @@ public class ParamHandler
         return schemes.VerboseMode.IsEqualToRule(str);
     }
     
+    private boolean isProcessCurrentdirectory(String str)
+    {
+        return schemes.ProcessCurrentDirectory.IsEqualToRule(str);
+    }
+
+    
     private boolean isGCode(String str)
     {
-        return schemes.GCode.IsEqualToRule(str);
-                
+        return schemes.GCode.IsEqualToRule(str);           
     }
+    
 
 }

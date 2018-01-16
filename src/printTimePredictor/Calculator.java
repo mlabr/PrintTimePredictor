@@ -49,7 +49,7 @@ public class Calculator
     private double timeLinear = 0; // s
     
     
-    public double calculateTraveTime(double path, double speed, Acceleration acceleration)
+    public double CalculateTraveTime(double path, double speed, Acceleration acceleration)
     {   
         double accelerationStart = acceleration.GetStartValue(); // mm/s^2
         double accelerationStop = acceleration.GetStopValue();
@@ -118,7 +118,7 @@ public class Calculator
                         acceleration = accelerationDefault;
    
                 }
-                time = calculateTraveTime(path, speed, acceleration);   
+                time = CalculateTraveTime(path, speed, acceleration);   
             } else
             {
                 time = 0;

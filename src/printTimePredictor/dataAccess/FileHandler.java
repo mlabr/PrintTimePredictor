@@ -17,6 +17,7 @@
 
 package printTimePredictor.dataAccess;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -64,4 +65,34 @@ public class FileHandler
         return errors;
     }
     
+    public String GetCurrentDirecory()
+    {
+        return System.getProperty("user.dir");
+    }
+    
+    public ArrayList<String> GetFilenameListByDirectory(String directory)
+    {
+        final File folder = new File(directory);
+        ArrayList<String> gcodeFileList = new ArrayList<>();
+        
+        for (final File fileEntry : folder.listFiles())
+        {
+            if (fileEntry.isDirectory())
+            {
+                //NOP
+            }
+            else
+            {
+                String gcodeFilename = fileEntry.getName().toLowerCase();
+                if(gcodeFilename.endsWith(".gcode"))
+                {
+                    gcodeFileList.add(fileEntry.getName());
+                }
+            }
+        }
+        
+        return gcodeFileList;
+     
+
+    }
 }

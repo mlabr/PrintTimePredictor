@@ -37,11 +37,11 @@ public class Schemes
     */
     BaseScheme Version = new BaseScheme("--version", "\nPrint Time Predictor v0.1.0\n");
     BaseScheme VerboseMode = new BaseScheme("-v", "Run in verbose mode for testing and development.");
+    BaseScheme ProcessCurrentDirectory = new BaseScheme("-a", "Load and process all gcode files from current directory. This will override the filename.gcode parameter.");
     
     
     BaseScheme GCode = new BaseScheme(".gcode", "Type one or more filename.gcode to specify file or files to load and process.", endWithKey);
     BaseScheme GCodeList = new BaseScheme(".glist", "Type one or more filename.glist to specify file or files to load and process.", endWithKey);
-       
     
 
     
@@ -54,7 +54,8 @@ public class Schemes
             +"\n\t" + key + "\t\t\t Show this help.\n"
             +"\t" + Version.GetKey() + "\t\t Show version.\n"
             +"\t" + VerboseMode.GetKey() + "\t\t\t " +VerboseMode.GetDescription()+"\n"
-            +"\t-filename" + GCode.GetKey() + "\t\t " + GCode.GetDescription() +"\n";
+            +"\t-filename" + GCode.GetKey() + "\t\t " + GCode.GetDescription() +"\n"
+            +"\t" + ProcessCurrentDirectory.GetKey() + "\t\t\t " + ProcessCurrentDirectory.GetDescription() +"\n";
             //+"\t-filename" + GCodeList.GetKey() + "\t\t " + GCodeList.GetDescription() +" (This is NOT implemented yet.)" +"\n"
             //+"\t-a \t\t\t proccess all gcode files in current directory (This is NOT implemented yet.)\n";
    
