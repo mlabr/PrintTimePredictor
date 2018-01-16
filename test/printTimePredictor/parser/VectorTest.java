@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Miroslav Labr
+ * @author mlabr
  */
 public class VectorTest
 {

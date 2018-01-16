@@ -24,7 +24,7 @@ import printTimePredictor.parser.Vector;
 
 /**
  *
- * @author Miroslav Labr
+ * @author mlabr
  */
 public class Calculator
 {
