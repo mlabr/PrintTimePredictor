@@ -21,6 +21,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import printTimePredictor.parser.Vector;
+import printTimePredictor.settings.Acceleration;
 
 /**
  *
@@ -29,14 +30,22 @@ import printTimePredictor.parser.Vector;
 public class Calculator
 {
     //TODO rafactore this:
-    public Acceleration accelerationXY = new Acceleration(3000,3000);
-    public Acceleration accelerationXYprinting = new Acceleration(4000,4000);
-    public Acceleration accelerationZ = new Acceleration(4000,4000);
-    public Acceleration accelerationRetraction = new Acceleration(3500,3500);
-    public Acceleration accelerationDefault = new Acceleration(3500,3500);
+//    public AccelerationVector accelerationXY = new AccelerationVector(3000,3000);
+//    public AccelerationVector accelerationXYprinting = new AccelerationVector(4000,4000);
+//    public AccelerationVector accelerationZ = new AccelerationVector(4000,4000);
+//    public AccelerationVector accelerationRetraction = new AccelerationVector(3500,3500);
+//    public AccelerationVector accelerationDefault = new AccelerationVector(3500,3500);
 
+    public Calculator(Acceleration acceleration)
+    {
+        this.acceleration = acceleration;
+    }
     
-    public Acceleration acceleration;
+    
+    public AccelerationVector accelerationVector;
+    
+    private Acceleration acceleration;// = new Acceleration();
+    
     private double travelSpeed = 0; // mm/s
     private double pathTotal = 0; // mm
     private double pathStart = 0; // mm
@@ -49,7 +58,7 @@ public class Calculator
     private double timeLinear = 0; // s
     
     
-    public double CalculateTraveTime(double path, double speed, Acceleration acceleration)
+    public double CalculateTraveTime(double path, double speed, AccelerationVector acceleration)
     {   
         double accelerationStart = acceleration.GetStartValue(); // mm/s^2
         double accelerationStop = acceleration.GetStopValue();
@@ -103,22 +112,22 @@ public class Calculator
                 switch(vector.GetType())
                 {
                     case 1: 
-                        acceleration = accelerationXY;
+                        accelerationVector = acceleration.XY;
                         break;
                     case 2:
-                        acceleration = accelerationRetraction;
+                        accelerationVector = acceleration.Retraction;
                         break;
                     case 3:
-                        acceleration = accelerationXYprinting;
+                        accelerationVector = acceleration.XYprinting;
                         break;
                     case 4:
-                        acceleration = accelerationZ;
+                        accelerationVector = acceleration.Z;
                         break;
                     default : //Todo warning to log this.
-                        acceleration = accelerationDefault;
+                        accelerationVector = acceleration.Default;
    
                 }
-                time = CalculateTraveTime(path, speed, acceleration);   
+                time = CalculateTraveTime(path, speed, accelerationVector);   
             } else
             {
                 time = 0;

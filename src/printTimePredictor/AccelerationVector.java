@@ -9,12 +9,12 @@ package printTimePredictor;
  *
  * @author mlabr
  */
-public class Acceleration
+public class AccelerationVector
 {
     private double start;
     private double stop;
     
-    public Acceleration(double start, double stop)
+    public AccelerationVector(double start, double stop)
     {
         this.start = start; // mm/s^2
         this.stop = stop; // mm/s^2

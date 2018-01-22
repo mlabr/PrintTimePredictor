@@ -27,6 +27,7 @@ import printTimePredictor.dataAccess.FileDataDto;
 import printTimePredictor.helpers.TimeConvertor;
 import printTimePredictor.params.ParamHandler;
 import printTimePredictor.parser.Vector;
+import printTimePredictor.settings.Acceleration;
 
 /**
  *
@@ -43,6 +44,7 @@ public class PrintTimePredictor
 
         ParamHandler paramHandler = new ParamHandler(args);
         FileHandler fileHandler = new FileHandler();
+        Acceleration acceleration = new Acceleration();
         
         boolean isVerbose = paramHandler.IsVerbose();
         ProgramLog log = new ProgramLog();
@@ -78,6 +80,7 @@ public class PrintTimePredictor
         if (isVerbose)
         {
             ArrayList<String> parameterList = paramHandler.GetParameterList();
+
             for (String str : parameterList)
             {
                 System.out.println("Parameters: " + str);
@@ -88,16 +91,22 @@ public class PrintTimePredictor
             {
                 System.out.println("Unrecognised parameter: " + str);
             }
+            
+            
+            System.out.println("Settings:\n" + acceleration.ToString() + "\n");
 
+            System.out.println("GCode files to load:");
             for (String str : gcodeList)
             {
-                System.out.println("GCode file to load: " + str);
+                System.out.println("  " + str);
             }
 
             if (parameterList.size() < 1)
             {
                 System.out.println("No input valid parameters, input --help.");
             };
+            
+            System.out.println("\nProcessed GCode files:");
         }
         
         
@@ -105,7 +114,7 @@ public class PrintTimePredictor
         ArrayList<FileDataDto> dtoList = new ArrayList<>();
         dtoList = fileHandler.GetGCodeDataListByNameList(gcodeList);
         
-        Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator(acceleration);
         
         
         float TotalEstimatedPrintTime = 0;
@@ -126,7 +135,7 @@ public class PrintTimePredictor
             {  
                 String hoursMinutesSeconds = TimeConvertor.ConvertSecondsToHMS((long) estimatedPrintTime);
                 
-                System.out.println(dto.GetName() + ": " + estimatedPrintTime  +" seconds; " + hoursMinutesSeconds);
+                System.out.println("  " + dto.GetName() + ": " + estimatedPrintTime  +" seconds; " + hoursMinutesSeconds);
             }
 
         }     
