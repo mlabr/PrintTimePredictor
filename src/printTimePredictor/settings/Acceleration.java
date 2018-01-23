@@ -34,7 +34,7 @@ public class Acceleration
     public String ToString()
     {
         StringBuilder sb = new StringBuilder();
-        
+        sb.append(" Acceleration (mm/s^2)\n");
         sb.append(String.format("  XY start: %1$.3f\n  XY stop: %2$.3f", XY.GetStartValue(), XY.GetStopValue()));
         sb.append(String.format("\n  XYprinting start: %1$.3f\n  XYprinting stop: %2$.3f", XYprinting.GetStartValue(), XYprinting.GetStopValue()));
         sb.append(String.format("\n  Z start: %1$.3f\n  Z stop: %2$.3f", Z.GetStartValue(), Z.GetStopValue()));
