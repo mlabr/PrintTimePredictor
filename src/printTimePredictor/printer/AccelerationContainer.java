@@ -14,29 +14,34 @@
 * You should have received a copy of the GNU General Public License
 * along with PrintTimePredictor.  If not, see <http://www.gnu.org/licenses/>.
 */
-package printTimePredictor.settings;
-
-import printTimePredictor.AccelerationVector;
+package printTimePredictor.printer;
 
 /**
  *
  * @author mlabr
  */
-public class Acceleration
+public class AccelerationContainer
 {
-    public AccelerationVector XY = new AccelerationVector(3000,3000);
-    public AccelerationVector XYprinting = new AccelerationVector(4000,4000);
-    public AccelerationVector Z = new AccelerationVector(4000,4000);
-    public AccelerationVector Retraction = new AccelerationVector(3500,3500);
-    public AccelerationVector Default = new AccelerationVector(3500,3500);
+    public AccelerationBase XY;// = new AccelerationBase(0, 0);
+    public AccelerationBase XYPrinting;// = new AccelerationBase(0, 0);
+    public AccelerationBase Z;// = new AccelerationBase(0, 0);
+    public AccelerationBase Retraction;// = new AccelerationBase(0, 0);
+    public AccelerationBase Default;// = new AccelerationBase(0, 0);
     
+    /*
+    public AccelerationVector XY = new AccelerationVector(PrinterProperties.AccXYStart, PrinterProperties.AccXYStop);
+    public AccelerationVector XYprinting = new AccelerationVector(PrinterProperties.AccXYPrintintgStart, PrinterProperties.AccXYPrintintgStop);
+    public AccelerationVector Z = new AccelerationVector(PrinterProperties.AccZStart, PrinterProperties.AccZStop);
+    public AccelerationVector Retraction = new AccelerationVector(PrinterProperties.AccRetractionStart, PrinterProperties.AccRetractionStop);
+    public AccelerationVector Default = new AccelerationVector(PrinterProperties.AccDefaultStart, PrinterProperties.AccDefaultStop);
+    */
     
     public String ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append(" Acceleration (mm/s^2)\n");
         sb.append(String.format("  XY start: %1$.3f\n  XY stop: %2$.3f", XY.GetStartValue(), XY.GetStopValue()));
-        sb.append(String.format("\n  XYprinting start: %1$.3f\n  XYprinting stop: %2$.3f", XYprinting.GetStartValue(), XYprinting.GetStopValue()));
+        sb.append(String.format("\n  XYprinting start: %1$.3f\n  XYprinting stop: %2$.3f", XYPrinting.GetStartValue(), XYPrinting.GetStopValue()));
         sb.append(String.format("\n  Z start: %1$.3f\n  Z stop: %2$.3f", Z.GetStartValue(), Z.GetStopValue()));
         sb.append(String.format("\n  Retraction start: %1$.3f\n  Retraction stop: %2$.3f", Retraction.GetStartValue(), Retraction.GetStopValue()));
         sb.append(String.format("\n  Default start: %1$.3f\n  Default stop: %2$.3f", Default.GetStartValue(), Default.GetStopValue()));

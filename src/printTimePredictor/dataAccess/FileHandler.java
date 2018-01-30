@@ -36,7 +36,7 @@ public class FileHandler
         fileRepo = new FileRepository();
     };
     
-    public ArrayList<FileDataDto> GetGCodeDataListByNameList(ArrayList<String> filenameList)
+    public ArrayList<FileDataDto> GetGCodeDtoListByNameList(ArrayList<String> filenameList)
     {
         String fileContain = "";
         ArrayList<String> lines = new ArrayList<String>();
@@ -95,4 +95,7 @@ public class FileHandler
      
 
     }
+    
+    //TODO
+    //public ArrayList<String> GetConfig(String filename)
 }

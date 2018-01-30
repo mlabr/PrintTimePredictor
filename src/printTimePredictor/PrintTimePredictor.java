@@ -22,12 +22,16 @@ package printTimePredictor;
 import printTimePredictor.parser.Analyzer;
 import printTimePredictor.service.ProgramLog;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import printTimePredictor.dataAccess.*;
 import printTimePredictor.dataAccess.FileDataDto;
 import printTimePredictor.helpers.TimeConvertor;
 import printTimePredictor.params.ParamHandler;
 import printTimePredictor.parser.Vector;
-import printTimePredictor.settings.Acceleration;
+import printTimePredictor.printer.AccelerationContainer;
+import printTimePredictor.printer.PrinterProperties;
 
 /**
  *
@@ -44,10 +48,61 @@ public class PrintTimePredictor
 
         ParamHandler paramHandler = new ParamHandler(args);
         FileHandler fileHandler = new FileHandler();
-        Acceleration acceleration = new Acceleration();
+        //AccelerationContainer acceleration = new AccelerationContainer();
+        PrinterProperties printer = new PrinterProperties();
         
         boolean isVerbose = paramHandler.IsVerbose();
         ProgramLog log = new ProgramLog();
+        
+        String configFile = paramHandler.GetConfigFilename();
+        
+        
+        
+        //TESTING
+        /*
+        ArrayList<String> containList = new ArrayList<String>();
+        
+        containList.add("AccXYStart = 30");
+        containList.add("AccXYStop = 30");
+        containList.add("AccXYPrintintgStart = 40");
+        containList.add("AccXYPrintintgStop = 40");
+        
+        for(String str : containList)
+        {
+            //System.out.println(str);
+            String[] prop = str.split("="); 
+        }
+
+        
+        PrinterProperties printer = new PrinterProperties();
+        //printer.Acceleration;
+        ArrayList<String> propertyNameList = printer.GetPropertyNameList();
+        Map<String, Float> map = printer.GetPropertyMap(); //new HashMap<String, Float>();
+        
+        for(Map.Entry<String, Float> item : map.entrySet())
+        {
+            System.out.println(item.getKey() +": " + item.getValue());
+        }
+        
+        //map.put(printer.AccDefaultStart, 3000f);
+        //map.put(printer.AccDefaultStop, 3000f);
+        //map.put(printer.AccDefaultStart, 5000f);
+        //System.out.println(printer.AccDefaultStart  +  map.get(printer.AccDefaultStart));
+        //System.out.println(printer.AccDefaultStop  +  map.get(printer.AccDefaultStop));
+        
+        
+        
+        
+        //modify acceleration
+        if (configFile != null)
+        {
+            //fileHandler
+            System.out.println("Configuration: " + configFile);
+            //acceleration.XY = new AccelerationVector(100, 100);
+            
+        }
+        
+        */
         
         
         String help = paramHandler.GetHelp();
@@ -93,7 +148,7 @@ public class PrintTimePredictor
             }
             
             
-            System.out.println("Settings:\n" + acceleration.ToString() + "\n");
+            System.out.println("Settings:\n" + printer.Acceleration.ToString() + "\n");
 
             System.out.println("GCode files to load:");
             for (String str : gcodeList)
@@ -112,9 +167,9 @@ public class PrintTimePredictor
         
         
         ArrayList<FileDataDto> dtoList = new ArrayList<>();
-        dtoList = fileHandler.GetGCodeDataListByNameList(gcodeList);
+        dtoList = fileHandler.GetGCodeDtoListByNameList(gcodeList);
         
-        Calculator calculator = new Calculator(acceleration);
+        Calculator calculator = new Calculator(printer);
         
         
         float TotalEstimatedPrintTime = 0;

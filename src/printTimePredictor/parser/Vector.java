@@ -78,6 +78,13 @@ public class Vector
         return size;
     }
     
+    //TODO
+    public double GetAngleXY()
+    {
+        
+        return 0;
+    }
+    
     public double GetSpeed()
     {
         return TravelSpeed;

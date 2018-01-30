@@ -17,11 +17,13 @@
 
 package printTimePredictor;
 
+import printTimePredictor.printer.AccelerationBase;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import printTimePredictor.parser.Vector;
-import printTimePredictor.settings.Acceleration;
+import printTimePredictor.printer.AccelerationContainer;
+import printTimePredictor.printer.PrinterProperties;
 
 /**
  *
@@ -36,15 +38,15 @@ public class Calculator
 //    public AccelerationVector accelerationRetraction = new AccelerationVector(3500,3500);
 //    public AccelerationVector accelerationDefault = new AccelerationVector(3500,3500);
 
-    public Calculator(Acceleration acceleration)
+    public Calculator(PrinterProperties printer)
     {
-        this.acceleration = acceleration;
+        this.acceleration = printer.Acceleration;
     }
     
     
-    public AccelerationVector accelerationVector;
+    public AccelerationBase accelerationVector;
     
-    private Acceleration acceleration;// = new Acceleration();
+    private AccelerationContainer acceleration;// = new Acceleration();
     
     private double travelSpeed = 0; // mm/s
     private double pathTotal = 0; // mm
@@ -56,9 +58,9 @@ public class Calculator
     private double timeStart = 0; // s
     private double timeStop = 0; // s
     private double timeLinear = 0; // s
+
     
-    
-    public double CalculateTraveTime(double path, double speed, AccelerationVector acceleration)
+    public double CalculateTraveTime(double path, double speed, AccelerationBase acceleration)
     {   
         double accelerationStart = acceleration.GetStartValue(); // mm/s^2
         double accelerationStop = acceleration.GetStopValue();
@@ -102,6 +104,7 @@ public class Calculator
         double time = 0;
         double path;
         double speed;
+        
         for (Vector vector : vectorList)
         {
             
@@ -118,7 +121,7 @@ public class Calculator
                         accelerationVector = acceleration.Retraction;
                         break;
                     case 3:
-                        accelerationVector = acceleration.XYprinting;
+                        accelerationVector = acceleration.XYPrinting;
                         break;
                     case 4:
                         accelerationVector = acceleration.Z;

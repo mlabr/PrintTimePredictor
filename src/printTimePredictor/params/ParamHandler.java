@@ -28,10 +28,13 @@ public class ParamHandler
     private final ArrayList<String> parameterList = new ArrayList(); 
     private final ArrayList<String> unrecognisedParameterList = new ArrayList();
     private final ArrayList<String> gcodeList = new ArrayList<>();
+    private String configFilename;
+    
     private boolean isHelpInParams = false;
     private boolean isVersionInParams = false;
     private boolean isVerboseMode = false;
     private boolean isGcodeInParams = false;
+    private boolean isConfigFileInParams = false;
     private boolean isProcessCurrentDirectory = false;
     
     
@@ -66,6 +69,14 @@ public class ParamHandler
                         
                         isGcodeInParams = true;
                     }
+                    
+                    if(isConfigFile(arg))
+                    {
+                        configFilename = arg.substring(1);
+                        
+                        isConfigFileInParams = true;
+                    }
+                    
                     
                     if(isProcessCurrentdirectory(arg))
                     {
@@ -103,6 +114,11 @@ public class ParamHandler
             return schemes.Help.GetDescription();
         }
         return null;
+    }
+    
+    public String GetConfigFilename()
+    {
+        return configFilename;
     }
     
     public String GetVersion()
@@ -156,5 +172,9 @@ public class ParamHandler
         return schemes.GCode.IsEqualToRule(str);           
     }
     
+    private boolean isConfigFile(String str)
+    {
+        return schemes.ConfigFile.IsEqualToRule(str);           
+    }
 
 }
