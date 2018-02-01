@@ -54,10 +54,15 @@ public class Calculator
     private double timeLinear = 0; // s
 
     
-    public double CalculateTraveTime(double path, double speed, AccelerationBase acceleration)
+    public double CalculateTraveTime(double path, double speed, AccelerationBase acceleration, boolean isAccelerationSame)
     {   
         double accelerationStart = acceleration.GetStartValue(); // mm/s^2
         double accelerationStop = acceleration.GetStopValue();
+        if(isAccelerationSame)
+        {
+            accelerationStop  = accelerationStart;
+        }
+
         
         pathTotal = path;
         travelSpeed = speed;
@@ -124,7 +129,7 @@ public class Calculator
                         accelerationVector = acceleration.Default;
    
                 }
-                time = CalculateTraveTime(path, speed, accelerationVector);   
+                time = CalculateTraveTime(path, speed, accelerationVector, true);   
             } else
             {
                 time = 0;
