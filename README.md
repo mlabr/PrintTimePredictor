@@ -1,10 +1,10 @@
 # PrintTimePredictor
-Simple console program to calculate time for 3d print from gcode file. The output is in seconds. You can proces multiple time at once. The result will be summarized.
+Simple console program to estimate time of 3d printing from gcode file. Works only with FFF (FDM) printers with orthogonal system (no delta yet, sorry). The output from this program is displayed in seconds or more detailed if verbose mode is used. You can also process multiple time at once. The result will be summarized.
 
 Writen in Java to run everywhere.
 
 1) To run, open console (in Windows run command "cmd", in Linux... you know)
-2) write and execute: java -jar PrintTimePredictor.jar --help
+2) Write and execute: java -jar PrintTimePredictor.jar --help
 
 Program will show you help, so you will se arguments, that you can use.
 
@@ -12,6 +12,8 @@ Program will show you help, so you will se arguments, that you can use.
 --version               Show version of program.
 -v                      Run in verbose mode for testing and development.
 -filename.gcode         Type one or more filename.gcode to specify file or files to load and process.
+-a                      Load and procces all gcode files from current directory.
+-printerName.conf       Use configuration in external configuration file named "printerName.conf"
 
 
 Example 1:

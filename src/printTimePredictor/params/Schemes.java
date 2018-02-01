@@ -35,7 +35,7 @@ public class Schemes
     MINOR version when you add functionality in a backwards-compatible manner, and
     PATCH version when you make backwards-compatible bug fixes.
     */
-    BaseScheme Version = new BaseScheme("--version", "\nPrint Time Predictor v0.2.0\n");
+    BaseScheme Version = new BaseScheme("--version", "\nPrint Time Predictor v0.3.0\n");
     BaseScheme VerboseMode = new BaseScheme("-v", "Run in verbose mode for testing and development.");
     BaseScheme ProcessCurrentDirectory = new BaseScheme("-a", "Load and process all gcode files from current directory. This will override the filename.gcode parameter.");
     

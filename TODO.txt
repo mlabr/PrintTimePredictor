@@ -1,5 +1,6 @@
 Some thing to do:
+add Jerk to calculator
 add another acceleration to travel speed (yx - plane, z) - Done
 file with list of gcode files to process
-file with print/printer settings (acceleration, etc ...) 
+file with print/printer settings (acceleration, etc ...)  - Done
 output to file
