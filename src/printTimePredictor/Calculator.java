@@ -21,7 +21,7 @@ import printTimePredictor.printer.AccelerationBase;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
-import printTimePredictor.parser.Vector;
+import printTimePredictor.gcode.Vector;
 import printTimePredictor.printer.AccelerationContainer;
 import printTimePredictor.printer.PrinterProperties;
 
@@ -31,12 +31,6 @@ import printTimePredictor.printer.PrinterProperties;
  */
 public class Calculator
 {
-    //TODO rafactore this:
-//    public AccelerationVector accelerationXY = new AccelerationVector(3000,3000);
-//    public AccelerationVector accelerationXYprinting = new AccelerationVector(4000,4000);
-//    public AccelerationVector accelerationZ = new AccelerationVector(4000,4000);
-//    public AccelerationVector accelerationRetraction = new AccelerationVector(3500,3500);
-//    public AccelerationVector accelerationDefault = new AccelerationVector(3500,3500);
 
     public Calculator(PrinterProperties printer)
     {

@@ -19,18 +19,17 @@
 
 package printTimePredictor;
 
-import printTimePredictor.parser.Analyzer;
+import printTimePredictor.parsers.GCodeParser;
 import printTimePredictor.service.ProgramLog;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import printTimePredictor.dataAccess.*;
 import printTimePredictor.dataAccess.FileDataDto;
 import printTimePredictor.helpers.TimeConvertor;
 import printTimePredictor.params.ParamHandler;
-import printTimePredictor.parser.Vector;
-import printTimePredictor.printer.AccelerationContainer;
+import printTimePredictor.gcode.Vector;
+import printTimePredictor.parsers.ConfigParser;
 import printTimePredictor.printer.PrinterProperties;
 
 /**
@@ -48,63 +47,34 @@ public class PrintTimePredictor
 
         ParamHandler paramHandler = new ParamHandler(args);
         FileHandler fileHandler = new FileHandler();
-        //AccelerationContainer acceleration = new AccelerationContainer();
         PrinterProperties printer = new PrinterProperties();
+        
         
         boolean isVerbose = paramHandler.IsVerbose();
         ProgramLog log = new ProgramLog();
         
-        String configFile = paramHandler.GetConfigFilename();
         
-        
-        
-        //TESTING
-        /*
-        ArrayList<String> containList = new ArrayList<String>();
-        
-        containList.add("AccXYStart = 30");
-        containList.add("AccXYStop = 30");
-        containList.add("AccXYPrintintgStart = 40");
-        containList.add("AccXYPrintintgStop = 40");
-        
-        for(String str : containList)
-        {
-            //System.out.println(str);
-            String[] prop = str.split("="); 
-        }
+        String configFilename = paramHandler.GetConfigFilename();
 
+        //Update pinter settings
+        String PrinterConfFilename = paramHandler.GetConfigFilename();
+        if(PrinterConfFilename != null)
+        {
+            FileDataDto configFile = fileHandler.GetConfigFileDtoByFilename(PrinterConfFilename);
         
-        PrinterProperties printer = new PrinterProperties();
-        //printer.Acceleration;
+            ArrayList<String> containList = configFile.GetData();
+            Map<String, Float> configMap =  ConfigParser.GetConfigMap(containList);
+
+            if(configMap != null)
+            {
+                printer.UpdatePropertyMap(configMap);
+            }
+        }
+        
         ArrayList<String> propertyNameList = printer.GetPropertyNameList();
         Map<String, Float> map = printer.GetPropertyMap(); //new HashMap<String, Float>();
         
-        for(Map.Entry<String, Float> item : map.entrySet())
-        {
-            System.out.println(item.getKey() +": " + item.getValue());
-        }
-        
-        //map.put(printer.AccDefaultStart, 3000f);
-        //map.put(printer.AccDefaultStop, 3000f);
-        //map.put(printer.AccDefaultStart, 5000f);
-        //System.out.println(printer.AccDefaultStart  +  map.get(printer.AccDefaultStart));
-        //System.out.println(printer.AccDefaultStop  +  map.get(printer.AccDefaultStop));
-        
-        
-        
-        
-        //modify acceleration
-        if (configFile != null)
-        {
-            //fileHandler
-            System.out.println("Configuration: " + configFile);
-            //acceleration.XY = new AccelerationVector(100, 100);
-            
-        }
-        
-        */
-        
-        
+
         String help = paramHandler.GetHelp();
         if (help != null)
         {
@@ -131,7 +101,7 @@ public class PrintTimePredictor
 
         
         
-        
+        //TODO Refactore
         if (isVerbose)
         {
             ArrayList<String> parameterList = paramHandler.GetParameterList();
@@ -175,7 +145,7 @@ public class PrintTimePredictor
         float TotalEstimatedPrintTime = 0;
         for(FileDataDto dto : dtoList)
         {           
-            Analyzer analyzer = new Analyzer(dto.GetData().get(0));
+            GCodeParser analyzer = new GCodeParser(dto.GetData().get(0));
             
             ArrayList<String> lines = dto.GetData();
             for(String line : lines )

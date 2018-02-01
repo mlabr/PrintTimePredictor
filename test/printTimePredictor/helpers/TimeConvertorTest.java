@@ -7,7 +7,7 @@ package printTimePredictor.helpers;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import printTimePredictor.parser.Vector;
+import printTimePredictor.gcode.Vector;
 
 /**
  *

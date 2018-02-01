@@ -86,8 +86,9 @@ public class PrinterProperties
         propertyNameList.add(SpeedZLimit);
         propertyNameList.add(SpeedRetractionLimit);
         propertyNameList.add(SpeedDefaultLimit);
-
-        initContainer();
+        
+        Acceleration = new AccelerationContainer();
+        UpdatePropertyMap(propertyMap);
     }
     
     
@@ -103,34 +104,22 @@ public class PrinterProperties
         return propertyMap;
     }
     
-    private void initContainer()
+    public void UpdatePropertyMap(Map<String, Float> map)
     {
-        Acceleration = new AccelerationContainer();
+        for(Map.Entry<String, Float> item : map.entrySet())
+        {
+            propertyMap.put(item.getKey(), item.getValue());
+        }
+        updateContainer();
+    }
+    
+    private void updateContainer()
+    {
         Acceleration.XY = new AccelerationBase(propertyMap.get(AccXYStart), propertyMap.get(AccXYStop));
         Acceleration.XYPrinting = new AccelerationBase(propertyMap.get(AccXYPrintintgStart), propertyMap.get(AccXYPrintintgStop));
         Acceleration.Z = new AccelerationBase(propertyMap.get(AccZStart), propertyMap.get(AccZStop));
         Acceleration.Retraction = new AccelerationBase(propertyMap.get(AccRetractionStart), propertyMap.get(AccRetractionStop));
         Acceleration.Default = new AccelerationBase(propertyMap.get(AccDefaultStart), propertyMap.get(AccDefaultStop));
     }
-    
-    /*
-    public static float AccXYStart = 3000;
-    public static float AccXYStop = 3000;
-    public static float AccXYPrintintgStart = 4000;
-    public static float AccXYPrintintgStop = 4000;
-    public static float AccZStart = 4000;
-    public static float AccZStop = 4000;
-    public static float AccRetractionStart = 3500;
-    public static float AccRetractionStop = 3500;
-    public static float AccDefaultStart = 3500;
-    public static float AccDefaultStop = 3500;
-    
-    public static float SpeedXYLimit = 0;
-    public static float SpeedXYPrintintgLimit = 0;
-    public static float SpeedZLimit = 0;
-    public static float SpeedRetractionLimit = 0;
-    public static float SpeedDefaultLimit = 0;
-    */
-    
     
 }

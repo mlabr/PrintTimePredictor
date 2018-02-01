@@ -15,8 +15,10 @@
 * along with PrintTimePredictor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package printTimePredictor.parser;
+package printTimePredictor.parsers;
 
+import printTimePredictor.gcode.GCodeData;
+import printTimePredictor.gcode.Vector;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ import java.util.ArrayList;
  *
  * @author Miroslav Labr
  */
-public class Analyzer
+public class GCodeParser
 {
     private final String[] paramPrefix = {"X", "Y", "Z", "E", "F"};
     private GCodeData currentGCodeData = new GCodeData();
@@ -33,7 +35,7 @@ public class Analyzer
     private ArrayList vectorList = new ArrayList();
     private float printTime = 0;
     
-    public Analyzer()
+    public GCodeParser()
     {
  
     }
@@ -41,7 +43,7 @@ public class Analyzer
     
     //current position
     //next position
-    public Analyzer(String line)
+    public GCodeParser(String line)
     {
         currentGCodeData = getDataFromLine(line);
 

@@ -15,7 +15,7 @@
 * along with PrintTimePredictor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package printTimePredictor.parser;
+package printTimePredictor.gcode;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;

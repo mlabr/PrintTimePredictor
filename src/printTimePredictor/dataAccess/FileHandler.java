@@ -96,6 +96,20 @@ public class FileHandler
 
     }
     
-    //TODO
-    //public ArrayList<String> GetConfig(String filename)
+    public FileDataDto GetConfigFileDtoByFilename(String filename)
+    {
+        ArrayList<String> lines = new ArrayList<String>();
+        FileDataDto dto = new FileDataDto(null, null);
+        try
+            {               
+                lines = fileRepo.GetLinesFromFile(filename);
+                dto = new FileDataDto(filename, lines);
+            }
+            catch (Exception e)
+            {
+                errors.add(filename + " " + e.toString());
+            }  
+        
+        return dto;
+    }
 }

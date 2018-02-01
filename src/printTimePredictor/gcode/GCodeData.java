@@ -15,7 +15,7 @@
 * along with PrintTimePredictor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package printTimePredictor.parser;
+package printTimePredictor.gcode;
 
 /**
  *
@@ -35,19 +35,19 @@ public class GCodeData
     Snnn Flag to check if an endstop was hit (S1 to check, S0 to ignore, S2 see note, default is S0)
     */
     
-    float X = 0;
-    float Y = 0;
-    float Z = 0;
-    float E = 0;
-    float F = 0;
+    public float X = 0;
+    public float Y = 0;
+    public float Z = 0;
+    public float E = 0;
+    public float F = 0;
     
-    String functionName= "G1";
+    public String functionName= "G1";
     
-    boolean isX = false;
-    boolean isY = false;
-    boolean isZ = false;
-    boolean isE = false;
-    boolean isF = false;
+    public boolean isX = false;
+    public boolean isY = false;
+    public boolean isZ = false;
+    public boolean isE = false;
+    public boolean isF = false;
     
     public GCodeData()
     {
