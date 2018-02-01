@@ -52,11 +52,10 @@ public class PrintTimePredictor
         
         boolean isVerbose = paramHandler.IsVerbose();
         ProgramLog log = new ProgramLog();
-        
-        
-        String configFilename = paramHandler.GetConfigFilename();
 
+        
         //Update pinter settings
+        String configFilename = paramHandler.GetConfigFilename();
         String PrinterConfFilename = paramHandler.GetConfigFilename();
         if(PrinterConfFilename != null)
         {
@@ -71,8 +70,9 @@ public class PrintTimePredictor
             }
         }
         
+        
         ArrayList<String> propertyNameList = printer.GetPropertyNameList();
-        Map<String, Float> map = printer.GetPropertyMap(); //new HashMap<String, Float>();
+        Map<String, Float> map = printer.GetPropertyMap(); 
         
 
         String help = paramHandler.GetHelp();

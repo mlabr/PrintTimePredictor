@@ -40,11 +40,20 @@ public class AccelerationContainer
     {
         StringBuilder sb = new StringBuilder();
         sb.append(" Acceleration (mm/s^2)\n");
+        
+        /*
         sb.append(String.format("  XY start: %1$.3f\n  XY stop: %2$.3f", XY.GetStartValue(), XY.GetStopValue()));
         sb.append(String.format("\n  XYprinting start: %1$.3f\n  XYprinting stop: %2$.3f", XYPrinting.GetStartValue(), XYPrinting.GetStopValue()));
         sb.append(String.format("\n  Z start: %1$.3f\n  Z stop: %2$.3f", Z.GetStartValue(), Z.GetStopValue()));
         sb.append(String.format("\n  Retraction start: %1$.3f\n  Retraction stop: %2$.3f", Retraction.GetStartValue(), Retraction.GetStopValue()));
         sb.append(String.format("\n  Default start: %1$.3f\n  Default stop: %2$.3f", Default.GetStartValue(), Default.GetStopValue()));
+        */
+        
+        sb.append(String.format("  XY start: %1$.3f", XY.GetStartValue()));
+        sb.append(String.format("\n  XYprinting start: %1$.3f", XYPrinting.GetStartValue()));
+        sb.append(String.format("\n  Z start: %1$.3f", Z.GetStartValue()));
+        sb.append(String.format("\n  Retraction start: %1$.3f", Retraction.GetStartValue()));
+        sb.append(String.format("\n  Default start: %1$.3f", Default.GetStartValue()));
 
         return sb.toString();
     }
