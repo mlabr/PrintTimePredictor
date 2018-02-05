@@ -81,8 +81,43 @@ public class Vector
     //TODO
     public double GetAngleXY()
     {
+        double degrees = 0;
+        double yxRatio = 0;
+        if(deltaX != 0)
+        {
+            yxRatio = abs(deltaY / deltaX);
+            degrees = Math.toDegrees(Math.atan(yxRatio));
+            if(deltaX < 0)
+            {
+                degrees = 180.0 - degrees;
+            }
+            
+            if(deltaY < 0)
+            {
+                degrees *=-1;
+            }
+            
+        }
+        else
+        {
+            if(deltaY > 0)
+            {
+                degrees = 90;
+            }
+            else
+            {
+                degrees = -90;
+            }
+            
+        }
+
         
-        return 0;
+
+        
+        //degrees = Math.toDegrees(Math.atan(yxRatio));
+        
+        
+        return degrees;
     }
     
     public double GetSpeed()

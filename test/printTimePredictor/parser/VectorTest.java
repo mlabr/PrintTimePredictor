@@ -94,6 +94,72 @@ public class VectorTest
        
     }
     
+    @Test
+    public void testGetAngleXY()
+    {
+        System.out.println("Test: GetAngleXY");
+        
+        System.out.println("  0 degrees");
+        Vector instance = new Vector(5,0,0,0);
+        double expResult = 0.0;
+        double result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("  45 degrees");
+        instance = new Vector(5,5,0,0);
+        expResult = 45.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+
+        System.out.println("  90 degrees");
+        instance = new Vector(0,5,0,0);
+        expResult = 90.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("  135 degrees");
+        instance = new Vector(-5,5,0,0);
+        expResult = 135.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("  180 degrees");
+        instance = new Vector(-5,0,0,0);
+        expResult = 180.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        
+        System.out.println("  -135 degrees");
+        instance = new Vector(-5,-5,0,0);
+        expResult = -135.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("  -90 degrees");
+        instance = new Vector(0,-5,0,0);
+        expResult = -90.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("  -45 degrees");
+        instance = new Vector(5,-5,0,0);
+        expResult = -45.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.0);
+        
+        instance = new Vector(-3,2,0,0);
+        expResult = 146.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.5);
+        
+        instance = new Vector(-3,-2,0,0);
+        expResult = -146.0;
+        result = instance.GetAngleXY(); 
+        assertEquals(expResult, result, 0.5);
+    
+    }
+    
 
     
 }
