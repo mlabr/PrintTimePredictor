@@ -97,7 +97,7 @@ public class ComparatorTest
         float angle = 45;
               
         float expResult = 0;
-        float result = instance.GetDifferenceSpeedByAngleXY(speedA, speedB, angle); 
+        float result = instance.GetSpeedDifferenceByAngleXY(speedA, speedB, angle); 
         assertEquals(expResult, result, 0.0001);
         
         /*
