@@ -24,7 +24,12 @@ import printTimePredictor.gcode.Vector;
  */
 public class Comparator
 {
-    
+    /**
+     * 
+     * @param angleA
+     * @param angleB
+     * @return 
+     */
     public float GetAngleXyDifference(double angleA, double angleB)
     {
         double difference = Math.abs(angleA - angleB);
@@ -33,6 +38,20 @@ public class Comparator
             difference = 360.0 - difference;
         }
 
+        return (float)difference;
+    }
+    
+    /**
+     * 
+     * @param speedA
+     * @param speedB
+     * @param angle
+     * @return 
+     */
+    public float GetSpeedDifferenceByAngleXY(float speedA, float speedB, float angle)
+    {
+        double difference = speedB - (Math.cos(Math.toRadians(angle)) * speedA);
+        
         return (float)difference;
     }
 }

@@ -111,12 +111,6 @@ public class Vector
             
         }
 
-        
-
-        
-        //degrees = Math.toDegrees(Math.atan(yxRatio));
-        
-        
         return degrees;
     }
     

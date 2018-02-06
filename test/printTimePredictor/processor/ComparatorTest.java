@@ -85,4 +85,28 @@ public class ComparatorTest
         result = instance.GetAngleXyDifference(angleA, angleB); 
         assertEquals(expResult, result, 0.0);
     }
+    
+    @Test
+    public void testGetDifferenceByAngleXY()
+    {
+        System.out.println("GetDifferenceByAngleXY");
+        Comparator instance = new Comparator();
+
+        float speedA = 28.2843f;
+        float speedB = 20;
+        float angle = 45;
+              
+        float expResult = 0;
+        float result = instance.GetDifferenceSpeedByAngleXY(speedA, speedB, angle); 
+        assertEquals(expResult, result, 0.0001);
+        
+        /*
+        vectorA = new Vector(20,0,0,0);;
+        vectorB = new Vector(20,0,0,0);;
+        expResult = 90;
+        result = instance.GetDifferenceSpeedByAngleXY(vectorA, vectorB); 
+        assertEquals(expResult, result, 0.0);
+        */
+    }
+    
 }
