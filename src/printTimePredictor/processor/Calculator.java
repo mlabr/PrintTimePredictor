@@ -15,7 +15,7 @@
 * along with PrintTimePredictor.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package printTimePredictor;
+package printTimePredictor.processor;
 
 import printTimePredictor.printer.AccelerationBase;
 import static java.lang.Math.pow;

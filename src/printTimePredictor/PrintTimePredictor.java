@@ -19,6 +19,7 @@
 
 package printTimePredictor;
 
+import printTimePredictor.processor.Calculator;
 import printTimePredictor.parsers.GCodeParser;
 import printTimePredictor.service.ProgramLog;
 import java.util.ArrayList;
